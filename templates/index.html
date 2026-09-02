@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Smokehouse | Intelligent Fish Smoking</title>
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f1e8" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#17233f" />
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="i-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+    <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.77.04"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+    <symbol id="i-thermo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></symbol>
+    <symbol id="i-wind" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></symbol>
+    <symbol id="i-waves" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13a8 8 0 1 0 8-7"/><path d="M9 17 7.5 21"/><path d="M15 17l1.5 4"/></symbol>
+  </svg>
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><svg><use href="#i-flame"></use></svg></div>
+      <div>
+        <p class="brand-name">Smokehouse</p>
+        <p class="brand-sub" data-i18n="intelligent">Intelligent control</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" data-nav="overview"><svg><use href="#i-dash"></use></svg><span data-i18n="overview">Overview</span></button>
+      <button class="nav-btn" data-nav="history"><svg><use href="#i-history"></use></svg><span data-i18n="history">Smoking history</span></button>
+      <button class="nav-btn" data-nav="settings"><svg><use href="#i-settings"></use></svg><span data-i18n="settings">System settings</span></button>
+    </nav>
+    <div class="hardware-card">
+      <div class="row">
+        <span class="kicker" data-i18n="hardware">Hardware link</span>
+        <span id="hwDot" class="dot"></span>
+      </div>
+      <p id="hwTitle" data-i18n="awaitingHardware">Waiting for ESP32</p>
+      <p class="hint" id="hwSync" data-i18n="noTelemetryYet">No telemetry yet</p>
+    </div>
+  </aside>
+
+  <div class="shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-btn" id="openMobile" aria-label="Open menu"><svg width="20" height="20"><use href="#i-menu"></use></svg></button>
+        <div>
+          <p class="kicker" data-i18n="control">Control center / 01</p>
+          <h1 data-i18n="smokingOverview">Smoking overview</h1>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <label class="lang-wrap" aria-label="Select language">
+          <svg><use href="#i-languages"></use></svg>
+          <select id="language">
+            <option value="en">English</option>
+            <option value="yo">Yorùbá</option>
+            <option value="ig">Igbo</option>
+            <option value="ha">Hausa</option>
+          </select>
+        </label>
+        <div class="live-chip"><span id="linkDot" class="dot"></span> <span id="linkText" data-i18n="connecting">Connecting to backend…</span></div>
+        <button class="header-btn" id="themeBtn" aria-label="Toggle theme"><svg id="themeIcon"><use href="#i-moon"></use></svg></button>
+        <button class="header-btn" id="moreBtn" aria-label="More options"><svg><use href="#i-more"></use></svg></button>
+      </div>
+    </header>
+
+    <div class="content">
+      <section id="view-overview" class="view active">
+        <div class="hero">
+          <div>
+            <div class="pill"><span id="statusDot" class="dot"></span> <span class="kicker" id="statusLabel" data-i18n="ready">System ready</span></div>
+            <h2 data-i18n="hero">The smoker at a glance.</h2>
+            <p data-i18n="intro">Monitor your chamber, follow model predictions, and keep every batch traceable.</p>
+          </div>
+          <button class="btn-primary" id="openForm"><svg width="16" height="16"><use href="#i-play"></use></svg> <span data-i18n="start">Start session</span></button>
+        </div>
+
+        <section class="grid-main">
+          <div class="card session-card" id="sessionCard">
+            <div class="session-head">
+              <div>
+                <p class="kicker" data-i18n="current">Current session</p>
+                <h3 id="sessionTitle">—</h3>
+                <p class="muted" id="sessionSub"></p>
+              </div>
+              <div class="power"><svg width="20" height="20"><use href="#i-power"></use></svg></div>
+            </div>
+            <div class="session-body">
+              <div>
+                <p class="kicker" data-i18n="remaining">Time remaining</p>
+                <p class="remain-value" id="remainValue">—</p>
+                <div class="remain-meta">
+                  <span class="inline"><svg><use href="#i-clock"></use></svg> <span id="progressNote"></span></span>
+                  <span id="autoStopNote" style="display:none"></span>
+                </div>
+              </div>
+              <div class="progress-wrap">
+                <div class="progress-labels"><span data-i18n="progressLabel">Progress</span><span id="progressPct">—</span></div>
+                <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+                <button class="stop-link" id="stopBtn"><svg width="12" height="12"><use href="#i-x"></use></svg> <span data-i18n="stopSession">Stop session</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card predict-card">
+            <div class="session-head">
+              <div>
+                <p class="kicker" data-i18n="prediction">Prediction engine</p>
+                <h3 data-i18n="model">Model estimate</h3>
+              </div>
+              <svg width="24" height="24" style="opacity:.6"><use href="#i-gauge"></use></svg>
+            </div>
+            <div class="predict-row">
+              <span class="value" id="totalDuration">—</span>
+              <span class="unit" data-i18n="duration">total duration</span>
+            </div>
+            <div class="predict-note" data-i18n="calculated">Calculated from temperature, humidity, gas, heater surface temperature, and fish weight.</div>
+          </div>
+        </section>
+
+        <section class="metrics">
+          <div class="metric-card">
+            <div class="head"><span class="kicker" data-i18n="chamber">Chamber temp</span><svg><use href="#i-thermo"></use></svg></div>
+            <p class="value" id="vTemp">—</p>
+            <p class="note"><span class="dot teal"></span> <span data-i18n="target">Target 65–72°C</span></p>
+          </div>
+          <div class="metric-card">
+            <div class="head"><span class="kicker" data-i18n="humidity">Humidity</span><svg><use href="#i-cloud"></use></svg></div>
+            <p class="value" id="vHum">—</p>
+            <p class="note"><span class="dot teal"></span> <span data-i18n="within">Within range</span></p>
+          </div>
+          <div class="metric-card">
+            <div class="head"><span class="kicker" data-i18n="gas">Gas sensor</span><svg><use href="#i-wind"></use></svg></div>
+            <p class="value" id="vGas">—</p>
+            <p class="note"><span class="dot teal"></span> <span data-i18n="air">Air quality</span></p>
+          </div>
+          <div class="metric-card">
+            <div class="head"><span class="kicker" data-i18n="heater">Heater reading</span><svg><use href="#i-flame"></use></svg></div>
+            <p class="value" id="vHeater">—</p>
+            <p class="note"><span id="heaterDot" class="dot"></span> <span id="heaterNote"></span></p>
+          </div>
+          <div class="metric-card">
+            <div class="head"><span class="kicker" data-i18n="fishWeightShort">Fish weight</span><svg><use href="#i-scale"></use></svg></div>
+            <p class="value" id="vWeight">—</p>
+            <p class="note"><span class="dot teal"></span> <span id="weightNote"></span></p>
+          </div>
+        </section>
+
+        <section class="lower">
+          <div class="block">
+            <div class="block-head">
+              <div>
+                <p class="kicker" data-i18n="telemetry">Live telemetry</p>
+                <h3 data-i18n="conditions">Chamber conditions</h3>
+              </div>
+              <span class="live-label"><svg><use href="#i-activity"></use></svg> <span data-i18n="updatesLive">Updates when packets arrive</span></span>
+            </div>
+            <div class="chart" id="chart"><div class="chart-empty" id="chartEmpty" data-i18n="waitingTelemetry">Waiting for live samples…</div></div>
+            <div class="chart-axis"><span>−30 min</span><span data-i18n="now">Now</span></div>
+          </div>
+          <div class="block">
+            <div class="health-head">
+              <div>
+                <p class="kicker" data-i18n="health">System health</p>
+                <h3 id="healthTitle" data-i18n="awaitingSensors">Awaiting sensors</h3>
+              </div>
+              <svg><use href="#i-waves"></use></svg>
+            </div>
+            <div class="health-list" id="healthList"></div>
+          </div>
+        </section>
+
+        <section class="block history-card">
+          <div class="history-head">
+            <div>
+              <p class="kicker" data-i18n="traceability">Traceability</p>
+              <h3 data-i18n="history">Smoking history</h3>
+            </div>
+            <button class="view-all" data-nav="history"><span data-i18n="viewAll">View all</span> <svg width="14" height="14"><use href="#i-arrow"></use></svg></button>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th data-i18n="fish">Fish type</th>
+                  <th data-i18n="fishWeightShort">Weight</th>
+                  <th data-i18n="durationCol">Duration</th>
+                  <th data-i18n="completed">Completed</th>
+                  <th class="right" data-i18n="result">Result</th>
+                </tr>
+              </thead>
+              <tbody id="historyPreview"><tr><td class="empty-row" colspan="5" data-i18n="emptyHistory">No completed sessions yet.</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section id="view-history" class="view">
+        <div class="hero">
+          <div>
+            <p class="kicker" data-i18n="traceability">Traceability</p>
+            <h2 data-i18n="history">Smoking history</h2>
+            <p data-i18n="historyIntro">Only sessions started and stopped from this server are listed.</p>
+          </div>
+        </div>
+        <div class="block">
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th data-i18n="fish">Fish type</th>
+                  <th data-i18n="fishWeightShort">Weight</th>
+                  <th data-i18n="durationCol">Duration</th>
+                  <th data-i18n="completed">Completed</th>
+                  <th class="right" data-i18n="result">Result</th>
+                </tr>
+              </thead>
+              <tbody id="historyFull"><tr><td class="empty-row" colspan="5" data-i18n="emptyHistory">No completed sessions yet.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <div class="hero">
+          <div>
+            <p class="kicker" data-i18n="settings">System settings</p>
+            <h2 data-i18n="settingsTitle">Control appearance and language.</h2>
+            <p data-i18n="settingsIntro">Theme and language stay on this device. Session and sensor values always come from the live backend.</p>
+          </div>
+        </div>
+        <div class="block settings-card">
+          <div class="settings-row">
+            <div>
+              <strong data-i18n="appearance">Appearance</strong>
+              <p class="muted" id="themeLabel"></p>
+            </div>
+            <button class="btn-primary" id="themeBtn2" data-i18n="toggleTheme">Toggle theme</button>
+          </div>
+          <div class="settings-row">
+            <div>
+              <strong data-i18n="language">Language</strong>
+              <p class="muted" data-i18n="languageHint">English, Yorùbá, Igbo, Hausa</p>
+            </div>
+            <label class="lang-wrap">
+              <svg><use href="#i-languages"></use></svg>
+              <select id="language2">
+                <option value="en">English</option>
+                <option value="yo">Yorùbá</option>
+                <option value="ig">Igbo</option>
+                <option value="ha">Hausa</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="overlay" id="mobileNav">
+    <button class="scrim" id="closeMobile" aria-label="Close menu"></button>
+    <aside class="drawer">
+      <div class="drawer-head">
+        <div class="sidebar-brand" style="height:auto;border:0;padding:0">
+          <div class="brand-mark"><svg><use href="#i-flame"></use></svg></div>
+          <div>
+            <p class="brand-name">Smokehouse</p>
+            <p class="brand-sub" data-i18n="controlMenu">Control menu</p>
+          </div>
+        </div>
+        <button class="close" id="closeMobileBtn"><svg width="20" height="20"><use href="#i-x"></use></svg></button>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-btn active" data-nav="overview"><svg><use href="#i-dash"></use></svg><span data-i18n="overview">Overview</span></button>
+        <button class="nav-btn" data-nav="history"><svg><use href="#i-history"></use></svg><span data-i18n="history">Smoking history</span></button>
+        <button class="nav-btn" data-nav="settings"><svg><use href="#i-settings"></use></svg><span data-i18n="settings">System settings</span></button>
+      </nav>
+      <div class="hardware-card">
+        <div class="row">
+          <span class="kicker" data-i18n="hardware">Hardware link</span>
+          <span id="hwDot2" class="dot"></span>
+        </div>
+        <p id="hwTitle2" data-i18n="awaitingHardware">Waiting for ESP32</p>
+        <p class="hint" id="hwSync2" data-i18n="noTelemetryYet">No telemetry yet</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="overlay modal" id="startModal">
+    <button class="scrim" id="closeFormScrim" aria-label="Close form"></button>
+    <form class="form-card" id="startForm">
+      <div class="session-head">
+        <div>
+          <p class="kicker" data-i18n="newBatch">New batch</p>
+          <h3 data-i18n="startTitle">Start a smoking session</h3>
+          <p class="muted" data-i18n="formIntro">Enter the essentials. The model will estimate the duration from live sensor data.</p>
+        </div>
+        <button type="button" class="close" id="closeForm"><svg width="20" height="20"><use href="#i-x"></use></svg></button>
+      </div>
+      <label>
+        <span data-i18n="fishType">Fish type</span>
+        <select id="fishType" required>
+          <option value="" disabled selected>Select fish type...</option>
+          <option value="shawa">Shawa</option>
+          <option value="catfish">Catfish</option>
+          <option value="tuna">Tuna</option>
+        </select>
+      </label>
+      <label>
+        <span data-i18n="fishWeight">Fish weight (kg)</span>
+        <input id="fishWeight" type="number" min="0.5" max="25" step="0.1" placeholder="—" />
+      </label>
+      <p class="muted" data-i18n="weightHint">Leave weight blank to capture it from the load cell.</p>
+      <button type="submit" class="btn-primary"><svg width="16" height="16"><use href="#i-play"></use></svg> <span data-i18n="begin">Begin session</span></button>
+    </form>
+  </div>
+
+  <div class="more-menu" id="moreMenu">
+    <p><svg width="14" height="14"><use href="#i-timer"></use></svg> <span id="moreText"></span></p>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
